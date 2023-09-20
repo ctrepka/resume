@@ -1,7 +1,18 @@
+use components::resume::{
+    DegreeListComponent, 
+    EmployerComponent, 
+    SkillzComponent,
+};
+
+use components::resume::{
+    Employer,
+    EdDegree,
+    Position,
+};
 use leptos::*;
-use serde::Deserialize;
-use leptos_router::*;
 use leptos_meta::*;
+use leptos_router::*;
+mod components;
 
 fn main() {
     mount_to_body(|cx| {
@@ -55,7 +66,7 @@ fn Resume(cx: Scope) -> impl IntoView {
                         employer = Employer{
                             name: String::from("Texas Water Development Board"),
                             positions: vec![
-                                Position{
+                                Position {
                                     city: String::from("Austin"),
                                     state: String::from("Texas"),
                                     job_title: String::from("Software Developer - Team Lead"),
@@ -68,7 +79,7 @@ fn Resume(cx: Scope) -> impl IntoView {
                                         String::from("Performed a migration of an EKS Cluster and RDS Aurora Database to a new VPC with zero downtime.")
                                     ],
                                 },
-                                Position{
+                                Position {
                                     city: String::from("Austin"),
                                     state: String::from("Texas"),
                                     job_title: String::from("Software Developer"),
@@ -83,8 +94,7 @@ fn Resume(cx: Scope) -> impl IntoView {
                                         String::from("Manage AWS infrastructure as Infrastructure as Code via CDK, Cloudformation, and Terraform."),
                                     ],
                                 }
-                            ]
-
+                            ],
                         }
                     />
                     <EmployerComponent
@@ -149,107 +159,4 @@ fn Resume(cx: Scope) -> impl IntoView {
         </div>
 
     }
-}
-
-#[component]
-fn EmployerComponent(cx: Scope, employer: Employer) -> impl IntoView {
-    view! {
-        cx,
-        <section class="jobDescription">
-            <h3 class="jobTitle">{employer.name}</h3>
-            {employer.positions.into_iter().map(|p| view! {cx, 
-                <div class="positionHeader">
-                    <h4 class="jobDateRange">{p.job_title}</h4>
-                    <h5 class="jobLocation">{p.date_start} - {p.date_end} | {p.city}, {p.state}</h5>
-                </div>
-               
-                <div class="jobAccomplishments">
-                    <ul>
-                    {p.accomplishments.into_iter().map(|n| view! {
-                        cx,
-                        <li>{n}</li>
-                    }).collect::<Vec<_>>()}
-                    </ul>
-                </div>
-            }).collect::<Vec<_>>()}
-            
-        </section>
-    }
-}
-
-#[component]
-fn SkillComponent(cx: Scope, skill_name: String) -> impl IntoView {
-    view! {
-        cx,
-        <li class="skillsListItem">{skill_name}</li>
-    }
-}
-
-#[component]
-fn SkillzComponent(cx: Scope, skillz: Vec<String>) -> impl IntoView {
-    view! {
-        cx,
-        <section class="skillsComponent">
-            <h2>"Skills"</h2>
-            <ul class="skillsList">
-                {skillz.into_iter().map(|n| view! {
-                    cx,
-                    <SkillComponent skill_name={n} />
-                }).collect::<Vec<_>>()}
-            </ul>
-        </section>
-        
-    }
-}
-
-#[component]
-fn DegreeItemComponent(cx: Scope, d: EdDegree) -> impl IntoView {
-    view! {
-        cx,
-            <h4 class="educationalDegreeInstitution">{d.institution}</h4>
-            <ul><li>{d.degree} | {d.graduation_date}</li></ul>
-    }
-}
-
-#[component]
-fn DegreeListComponent(cx: Scope, degreez: Vec<EdDegree>) -> impl IntoView {
-    view! {
-        cx,
-        <section class="degreeListComponent">
-            <h2>"Education"</h2>
-            <div class="degreeList">
-                {degreez.into_iter().map(|n| view! {
-                    cx,
-                    <DegreeItemComponent d={n} />
-                }).collect::<Vec<_>>()}
-            </div>
-        </section>
-        
-    }
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct Position {
-    city: String,
-    state: String,
-    job_title: String,
-    date_start: String,
-    date_end: String,
-    accomplishments: Vec<String>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct Employer {
-    name: String,
-    positions: Vec<Position>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct EdDegree {
-    institution: String,
-    degree: String,
-    graduation_date: String,
 }
