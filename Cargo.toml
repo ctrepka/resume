@@ -8,3 +8,5 @@ edition = "2021"
 [dependencies]
 leptos = { version = "0.4.10", features = ["csr", "nightly"] }
 serde = { version = "1.0", features = ["derive"] }
+leptos_router = {version = "0.4.10", features = ["csr"] }
+leptos_meta = { version = "0.4.10", features = ["csr"]  }

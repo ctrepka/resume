@@ -1,11 +1,26 @@
 use leptos::*;
 use serde::Deserialize;
+use leptos_router::*;
+use leptos_meta::*;
 
 fn main() {
     mount_to_body(|cx| {
         view! {
             cx,
-            <Resume />
+            <Router>
+                <nav id="topNavWrapper">
+                    <div id="topNavContainer">
+                        <a href="/">"Home"</a>
+                        <a href="/resume">"Resume"</a>
+                    </div>
+                </nav>
+                <main>
+                    <Routes>
+                        <Route path="/" view=|cx| view! {cx, <h1>"Home"</h1>} />
+                        <Route path="/resume" view=|cx| view! {cx, <Resume />}/>
+                    </Routes>
+                </main>
+            </Router>
         }
     })
 }
@@ -15,6 +30,15 @@ fn Resume(cx: Scope) -> impl IntoView {
     view! {cx,
         <div class="resumeWrapper">
             <div class="resumeContainer">
+                <Script id="jspdf" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></Script>
+                <script>
+                    var doc = undefined;
+                    var script = document.querySelector("#jspdf");
+                    script.addEventListener("load", function(){
+                        doc = new window.jspdf.jsPDF();
+                    });
+                    console.log(doc);
+                </script>
                 <section class="resumeBody">
                 <div class="main">
                     <section class="resumeHeader">

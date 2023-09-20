@@ -9,9 +9,6 @@
                 margin: 0.25in;
                 font-size: 12px;
             }
-            ul {
-                padding-left: 24px;
-            }
             body,
             html {
                 width: 100vw;
@@ -22,6 +19,12 @@
                 font-family: arial;
                 font-size: 14px;
                 line-height: 125%;
+            }
+            main {
+                padding: 8px;
+            }
+            ul {
+                padding-left: 24px;
             }
             h1 {
                 font-size: 32px;
@@ -55,8 +58,26 @@
                 margin-bottom: 8px;
                 line-height: 100%;
             }
-            .resumeWrapper {
+            #topNavWrapper {
+                width: 100%;
+                max-width: 1600px;
+                margin: auto;
+                background: #333;
+            }
+            #topNavContainer {
+                display: grid;
+                grid-auto-flow: column;
+                justify-content: start;
+                gap: 16px;
                 padding: 8px;
+            }
+            #topNavContainer a {
+                padding: 8px 16px;
+                font-weight: 600;
+                text-decoration: none;
+                color: white;
+            }
+            .resumeWrapper {
                 max-width: 1600px;
                 margin: auto;
             }
