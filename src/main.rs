@@ -1,14 +1,6 @@
-use components::resume::{
-    DegreeListComponent, 
-    EmployerComponent, 
-    SkillzComponent,
-};
+use components::resume::{DegreeListComponent, EmployerComponent, SkillzComponent};
 
-use components::resume::{
-    Employer,
-    EdDegree,
-    Position,
-};
+use components::resume::{EdDegree, Employer, Position};
 use leptos::*;
 use leptos_meta::*;
 use leptos_router::*;
@@ -19,16 +11,14 @@ fn main() {
         view! {
             cx,
             <Router>
-                <nav id="topNavWrapper">
+                /* <nav id="topNavWrapper">
                     <div id="topNavContainer">
-                        <a href="/">"Home"</a>
-                        <a href="/resume">"Resume"</a>
+                        <a href="/">"Resume"</a>
                     </div>
-                </nav>
+                </nav> */
                 <main>
                     <Routes>
-                        <Route path="/" view=|cx| view! {cx, <h1>"Home"</h1>} />
-                        <Route path="/resume" view=|cx| view! {cx, <Resume />}/>
+                        <Route path="/" view=|cx| view! {cx, <Resume />}/>
                     </Routes>
                 </main>
             </Router>
@@ -69,14 +59,15 @@ fn Resume(cx: Scope) -> impl IntoView {
                                 Position {
                                     city: String::from("Austin"),
                                     state: String::from("Texas"),
-                                    job_title: String::from("Software Developer - Team Lead"),
+                                    job_title: String::from("Manager - Application Development"),
                                     date_start: String::from("May 2023"),
                                     date_end: String::from("Present"),
                                     accomplishments: vec![
                                         String::from("Helped build a new team of four developers who I train, mentor, collaborate with and learn from daily."),
                                         String::from("Triage with third parties and IT department to secure our cloud, develop new products and services, and ensure compliance with state regulations."),
-                                        String::from("Maintain communications with UX, marketing, and project management teams to ensure deadlines and requirements are met for new features and services."),
-                                        String::from("Performed a migration of an EKS Cluster and RDS Aurora Database to a new VPC with zero downtime.")
+                                        String::from("Maintain communications with UX, marketing, and project management teams to ensure deadlines and requirements are met for new projects, features, and services."),
+                                        String::from("Help establish strategic plans and communicate value and limitations of software and web application projects."),
+                                        String::from("Performed the migration of an AWS Kubernetes Cluster and PostgreSQL Database to a new Virtual Private Cloud with zero application downtime.")
                                     ],
                                 },
                                 Position {
@@ -98,6 +89,29 @@ fn Resume(cx: Scope) -> impl IntoView {
                         }
                     />
                     <EmployerComponent
+                    employer = Employer{
+                        name: String::from("The University of Texas at Austin"),
+                        positions: vec![
+                            Position{
+                                city: String::from("Austin"),
+                                state: String::from("Texas"),
+                                job_title: String::from("Teaching Assistant"),
+                                date_start: String::from("August 2018"),
+                                date_end: String::from("May 2020"),
+                                accomplishments: vec![
+                                    String::from("Created video resources such as tutorials and introductions to online course materials and concepts"),
+                                    String::from("Assisted the production and maintenance of course materials for online courses using Canvas"),
+                                    String::from("Assisted the formulation of innovative solutions to distance learning needs and requirements"),
+                                    String::from("Collaborated with UT faculty and Lab Staff coworkers to solve problems"),
+                                    String::from("Maintained order of the IT Lab, including over 70 computers running a mixture of Mac OS and Windows"),
+                                    String::from("Provided technology assistance services to faculty and students on the use of IT Lab tech and software such as the Double Telepresence Robot, sound recording rooms, Camtasia, Zoom, Panopto, and the Adobe Creative Suite"),
+                                    String::from("Managed work orders and resource reservations through Spiceworks, Outlook, and the Google Suite"),
+                                ],
+                            },
+                        ],
+                    }
+                />
+                    <EmployerComponent
                         employer = Employer{
                             name: String::from("Texas Global"),
                             positions: vec![
@@ -118,6 +132,7 @@ fn Resume(cx: Scope) -> impl IntoView {
                             ],
                         }
                     />
+
                 </div>
                 <div class="asideWrapper">
                     <div class="asideContainer">
