@@ -5,7 +5,7 @@ buildLocal:
 	trunk build --release
 
 deployDist:
-	trunk build --release --public-url resume
+	trunk build --release
 	touch .nojekyll && cp .nojekyll ./dist
 	git add .
 	git commit -m 'deployment'

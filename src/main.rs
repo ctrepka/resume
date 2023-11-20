@@ -11,14 +11,9 @@ fn main() {
         view! {
             cx,
             <Router>
-                /* <nav id="topNavWrapper">
-                    <div id="topNavContainer">
-                        <a href="/">"Resume"</a>
-                    </div>
-                </nav> */
                 <main>
                     <Routes>
-                        <Route path="/" view=|cx| view! {cx, <Resume />}/>
+                        <Route path="/" view=|cx| view! {cx, <Resume />} />
                     </Routes>
                 </main>
             </Router>
