@@ -3,20 +3,15 @@ use components::resume::{DegreeListComponent, EmployerComponent, SkillzComponent
 use components::resume::{EdDegree, Employer, Position};
 use leptos::*;
 use leptos_meta::*;
-use leptos_router::*;
 mod components;
 
 fn main() {
     mount_to_body(|cx| {
         view! {
             cx,
-            <Router>
-                <main>
-                    <Routes>
-                        <Route path="/" view=|cx| view! {cx, <Resume />} />
-                    </Routes>
-                </main>
-            </Router>
+
+                  <Resume />
+
         }
     })
 }
